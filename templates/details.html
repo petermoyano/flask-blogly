@@ -1,0 +1,15 @@
+{%extends 'home.html'%}
+
+{%block title%}Showing details about {{current_user.first_name}}{%endblock%}
+
+{% block h1 %}<h1>Showing details!!</h1>{% endblock %}
+
+{%block details%}
+<p>
+   This user's firstname is : {{current_user.first_name}}, lastname: {{current_user.last_name}}, holding an id of {{current_user.id}}</p>
+{%endblock%}
+
+{% block new_user%}
+<a href="/users/{{current_user.id}}/edit">Edit this user</a>
+<a href="/">Go back Home!</a>
+{% endblock%}

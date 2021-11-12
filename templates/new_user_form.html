@@ -1,0 +1,17 @@
+{%extends 'home.html'%}
+
+{%block title%}Add a new user!{%endblock%}
+
+{% block h1 %}<h1>New user form.</h1>{% endblock %}
+
+{%block details%}
+
+<form action="/users/new" method="POST">
+    <input type="text" name="first_name" placeholder="Enter first name">
+    <input type="text" name="last_name" placeholder="Enter last name">
+    <input type="text" name="image_url" placeholder="Enter image URL">
+    <button type="submit">Submit new User!</button>
+</form>
+
+{%endblock%}
+
