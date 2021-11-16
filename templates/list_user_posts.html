@@ -1,0 +1,27 @@
+{%extends 'home.html'%}
+
+{%block title%}{{current_user.first_name}} posts{%endblock%}
+
+{% for msg in get_flashed_messages() %}
+<p>{{msg}}</p>
+{% endfor %}
+
+{% block h1 %}<h1>{{current_user.first_name}}'s' posts</h1>{% endblock %}
+
+{%block details%}
+<p>
+   This user's firstname is : {{current_user.first_name}}, lastname: {{current_user.last_name}}, holding an id of {{current_user.id}}</p>
+   {% for post in user_posts %}
+   <ul>
+       <li>title: {{post.title}} made by {{current_user.first_name}}<a href="/posts/{{post.id}}"> Show me this post.</a><form action="/posts/{{post.id}}/delete" method="POST">
+        <button type="submit">Delete this post</button>
+    </form></li> 
+   </ul>
+   {% endfor %}
+{%endblock%}
+
+{% block new_user%}
+<a href="/users/{{current_user.id}}/edit">Edit this user</a>
+<a href="/users/{{current_user.id}}/posts/new">Make a brand new post!</a>
+<a href="/">Go back Home!</a>
+{% endblock%}

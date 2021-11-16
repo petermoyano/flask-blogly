@@ -1,0 +1,30 @@
+{%extends 'home.html'%}
+
+{% block title %}
+{{current_post.title}}
+{%endblock%}
+
+{% block h1 %}
+<h1>{{current_post.title}}</h1>
+{% endblock %}
+
+{%block details%}
+
+{% for msg in get_flashed_messages() %}
+<p>{{msg}}</p>
+{% endfor %}
+
+<p>{{current_post.content}}</p> 
+<form action="/posts/{{current_post.id}}/delete" method="POST">
+    <button type="submit">Delete this post</button>
+</form>
+
+{%endblock%}
+
+
+{% block new_user%}
+<a href="/posts/{{current_post.id}}/edit">Edit this post</a>
+<a href="/users/{{current_post.user}}/posts/new">Make a brand new post!</a>
+<a href="/posts/{{current_post.id}}/delete">Delete this post</a>
+<a href="/">Go back Home!</a>
+{% endblock%}

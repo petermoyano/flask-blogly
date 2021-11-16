@@ -1,0 +1,21 @@
+{%extends 'home.html'%}
+
+{%block title%}Edit Post {%endblock%}
+<!-- {{User.query.get(user_id).first_name}} -->
+{% block h1 %}<h1>Edit this post!</h1>{% endblock %}
+
+{%block details%}
+
+<form action="/posts/{{post_id}}/edit" method="POST">
+    <input type="text" name="title" placeholder="{{title}}">
+    <input type="text" name="content" placeholder="{{content}}">
+    <button type="submit">Edit post!</button>
+</form>
+<form action="/users/{{user_id}}/delete" method="POST">
+    <button type="submit"> Delete this user! </button>
+</form>
+{%endblock%}
+
+{% block new_user%}
+<a href="/">Go back Home!</a>
+{% endblock%}

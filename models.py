@@ -1,5 +1,5 @@
 """Models for Blogly."""
-
+import datetime
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.visitors import ReplacingCloningVisitor
 
@@ -22,14 +22,39 @@ class User(db.Model):
     last_name = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.Text, default=DEFAULT_IMG)
 
+class Post(db.Model):
+    """Minimalist Post"""
+    __tablename__='posts'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(30), nullable = False)
+    content = db.Column(db.String(500), nullable = False)
+    created_at = db.Column(db.DateTime, default= datetime.datetime.now, nullable = False)
+    user = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
 
 
-def Add_testing_data():
+def Add_seed_users():
     """Fills db with some data for testing"""
-    Paul = User(first_name = 'Paul', last_name = 'McCartney', image_url = 'https://www.freeiconspng.com/uploads/snapchat-logo-6.jpg')
-    John = User(first_name = 'John', last_name = 'Lennon', image_url = 'https://www.freeiconspng.com/uploads/citizen-icon-7.jpg')
-    Ringo = User(first_name = 'Ringo', last_name = 'Star', image_url = 'https://www.freeiconspng.com/uploads/bus-driver-icon-png-9.png')
+    Paul = User(id = 1, first_name = 'Paul', last_name = 'McCartney', image_url = 'https://www.freeiconspng.com/uploads/snapchat-logo-6.jpg')
+    John = User(id = 2, first_name = 'John', last_name = 'Lennon', image_url = 'https://www.freeiconspng.com/uploads/citizen-icon-7.jpg')
+    Ringo = User(id = 3, first_name = 'Ringo', last_name = 'Star', image_url = 'https://www.freeiconspng.com/uploads/bus-driver-icon-png-9.png')
     db.session.add(Paul)
     db.session.add(John)
     db.session.add(Ringo)
     db.session.commit()
+
+def Add_seed_posts():
+    """Fills db with some posts for testing"""
+    post1 = Post(title = "Post1", content = "This is the first post!", user = 1)
+    post2 = Post(title = "Post2", content = "This is the second post! Huurray!", user = 2)
+    post3 = Post(title = "Post3", content = "This is the third post! Silver medal!", user = 3)
+    db.session.add(post1)
+    db.session.add(post2)
+    db.session.add(post3)
+    db.session.commit()
+
+def Delete_tables():
+    """Emptie users table"""
+    db.drop_all()
+    db.create_all()
+    User.query.delete()
+    Post.query.delete()
