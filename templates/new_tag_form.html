@@ -1,0 +1,28 @@
+{%extends 'home.html'%}
+
+{%block title%}new Tag {%endblock%}
+
+{% block h1 %}<h1>Create a new tag!</h1>{% endblock %}
+
+{%block details%}
+
+<h2>All available tags</h2>
+<ul>
+{% for tag in all_tags %}
+<li>{{tag.name}}</li>
+{% endfor %}
+</ul>
+
+
+
+<form action="/tags/new" method="POST">
+    <input type="text" name="name" placeholder="Enter tag">
+    <button type="submit">Create new tag!</button>
+</form>
+
+
+{%endblock%}
+
+{% block links %}
+<a href="/">Go back Home!</a>
+{% endblock%}

@@ -19,10 +19,18 @@
     <button type="submit">Delete this post</button>
 </form>
 
+{% if current_post.tags %}
+<p>
+  <b>Tags:</b>
+  {% for tag in current_post.tags %}
+  <a href="/tags/{{ tag.id }}">>{{ tag.name }}</a>
+  {% endfor %}
+</p>
+{% endif %}
 {%endblock%}
 
 
-{% block new_user%}
+{% block links %}
 <a href="/posts/{{current_post.id}}/edit">Edit this post</a>
 <a href="/users/{{current_post.user}}/posts/new">Make a brand new post!</a>
 <a href="/posts/{{current_post.id}}/delete">Delete this post</a>

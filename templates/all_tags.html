@@ -1,0 +1,32 @@
+{%extends 'home.html'%}
+
+{%block title%}Tags page{%endblock%}
+
+{% for msg in get_flashed_messages() %}
+<p>{{msg}}</p>
+{% endfor %}
+
+{% block h1 %}<h1>All tags created</h1>{% endblock %}
+
+{%block details%}
+
+<ul>
+{% for tag in all_tags %}
+<li>
+    <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+    
+    <form action="/tags/{{tag.id}}/delete" method="POST"> 
+        <button type="submit">Delete</button>
+    </form> 
+    <form action="/tags/{{tag.id}}/edit" method="GET">
+        <button type="submit">Edit</button>
+    </form>
+</li>
+{% endfor %}
+</ul>
+<a href="/tags/new"> Create a new tag</a>
+{% endblock %}
+
+{% block links %}
+<a href="/">Go back Home!</a>
+{% endblock%}

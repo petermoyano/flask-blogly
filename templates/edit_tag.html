@@ -1,0 +1,19 @@
+{%extends 'home.html'%}
+
+{%block title%}Edit Tag {%endblock%}
+{% block h1 %}<h1>Edit this tag!</h1>{% endblock %}
+
+{%block details%}
+
+<form action="/tags/{{tag_id}}/edit" method="POST">
+    <input type="text" name="name" placeholder="Enter new name for this tag">
+    <button type="submit">Edit tag!</button>
+</form>
+<form action="/tags/{{tag_id}}/delete" method="POST"> 
+    <button type="submit">Delete</button>
+</form> 
+{%endblock%}
+
+{% block links %}
+<a href="/">Go back Home!</a>
+{% endblock%}

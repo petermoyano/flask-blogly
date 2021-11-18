@@ -1,0 +1,32 @@
+{%extends 'home.html'%}
+
+{% block title %}
+Tag: {{current_tag.name}}
+{%endblock%}
+
+{% block h1 %}
+<h1>Tag: {{current_tag.name}}</h1>
+{% endblock %}
+
+{%block details%}
+
+{% if current_tag.posts %}
+<p>
+  <b>Tags:</b>
+  {% for post in current_tag.posts %}
+  <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+  {% endfor %}
+</p>
+{% endif %}
+
+<form action="/tags/{{current_tag.id}}/delete" method="POST">
+    <button type="submit">Delete this tag</button>
+</form>
+{%endblock%}
+
+
+{% block links %}
+<a href="/tags/{{current_tag.id}}/edit">Edit this tag</a>
+<a href="/tags/new">Make a brand new tag!</a>
+<a href="/">Go back Home!</a>
+{% endblock%}

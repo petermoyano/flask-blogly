@@ -20,7 +20,7 @@
    {% endfor %}
 {%endblock%}
 
-{% block new_user%}
+{% block links %}
 <a href="/users/{{current_user.id}}/edit">Edit this user</a>
 <a href="/users/{{current_user.id}}/posts/new">Make a brand new post!</a>
 <a href="/">Go back Home!</a>
